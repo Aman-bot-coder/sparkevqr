@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Generator for SparkEv</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            margin-top: 20px;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate QR Code for SparkEv App</h1>
+    <input type="text" id="chargerId" placeholder="Please enter your charger ID" />
+    <input type="text" id="stationId" placeholder="Please enter your station ID" />
+    <input type="text" id="connectorId" placeholder="Please enter your connector ID" />
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <canvas id="qrcode"></canvas>
+    <script>
+        function generateQRCode() {
+            var chargerId = document.getElementById('chargerId').value;
+            var stationId = document.getElementById('stationId').value;
+            var connectorId = document.getElementById('connectorId').value;
+
+            if (chargerId === "" || stationId === "" || connectorId === "") {
+                alert("Please fill all the fields.");
+                return;
+            }
+
+            var qrValue = chargerId + ' ' + stationId + ' ' + connectorId;
+
+            var qr = new QRious({
+                element: document.getElementById('qrcode'),
+                value: qrValue,
+                size: 250,
+                background: 'white',
+                foreground: 'black' // Custom foreground color
+            });
+        }
+    </script>
+</body>
+</html>
