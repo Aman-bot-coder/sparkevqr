@@ -60,6 +60,7 @@
     <input type="text" id="connectorId" placeholder="Please enter your connector ID" />
     <button onclick="generateQRCode()" class="m-auto mt-30 block hover-enlarge">Generate QR Code</button>
     <canvas id="qrcode"></canvas>
+    <a id="downloadLink" style="display: none;" download="qrcode.png">Save QR Code</a>
     <script>
         function generateQRCode() {
             var chargerId = document.getElementById('chargerId').value;
@@ -81,6 +82,15 @@
                 background: 'white',
                 foreground: 'black' // Custom foreground color
             });
+
+
+            // document.getElementById('qrcode').style.display = 'block';
+            var canvas = document.getElementById('qrcode');
+            var dataURL = canvas.toDataURL('image/png');
+            var downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = dataURL;
+            downloadLink.style.display = 'block';
+
         }
     </script>
 </body>
