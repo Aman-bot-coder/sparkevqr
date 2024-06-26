@@ -29,14 +29,36 @@
         canvas {
             margin-top: 20px;
         }
+
+        .mb-35{
+            margin-bottom: 35px;
+        }
+
+        .m-auto
+        {
+            margin: auto;
+        }
+
+        .mt-30{
+            margin-top: 30px;
+        }
+
+        .block{
+            display: block;
+        }
+
+        button:hover{
+            transition: transform  0.2s;
+            transform: scale(1.25);
+        }
     </style>
 </head>
 <body>
-    <h1>Generate QR Code for SparkEv App</h1>
+    <h1 class="mb-35">Generate QR Code for SparkEv App</h1>
     <input type="text" id="chargerId" placeholder="Please enter your charger ID" />
     <input type="text" id="stationId" placeholder="Please enter your station ID" />
     <input type="text" id="connectorId" placeholder="Please enter your connector ID" />
-    <button onclick="generateQRCode()">Generate QR Code</button>
+    <button onclick="generateQRCode()" class="m-auto mt-30 block hover-enlarge">Generate QR Code</button>
     <canvas id="qrcode"></canvas>
     <script>
         function generateQRCode() {
@@ -45,6 +67,7 @@
             var connectorId = document.getElementById('connectorId').value;
 
             if (chargerId === "" || stationId === "" || connectorId === "") {
+                document.getElementById("qrcode").style.display = "none";
                 alert("Please fill all the fields.");
                 return;
             }
